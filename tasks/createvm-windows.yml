@@ -55,7 +55,7 @@
       autologon: "{{ vmware_costumizations_windows_autologon }}"
       password: "{{ vmware_costumizations_windows_template_password }}"
   with_items: "{{ vmware_hosts }}"
-  when: vmware_vcenter_environment == "noproduciton"
+  when: vmware_vcenter_environment == "noproduction"
   register: host_created
 
 - name: creating a VM Windows at vSphere vCenter in Production
@@ -91,7 +91,7 @@
       autologon: "{{ vmware_costumizations_windows_autologon }}"
       password: "{{ vmware_costumizations_windows_template_password }}"
   with_items: "{{ vmware_hosts }}"
-  when: vmware_vcenter_environment == "produciton"
+  when: vmware_vcenter_environment == "production"
   register: host_created
 
 - name: add hosts
