@@ -10,7 +10,7 @@
         datastore: "{{ vmware_datastore_name }}"
   when: 
     - vmware_vcenter_environment == "noproduction"
-    - vmware_disk_list is not none
+    - vmware_disk_list is none
 
 - name: setup Production disk defaults
   set_fact:
@@ -23,7 +23,7 @@
       datastore: "{{ vmware_datastore_name2 }}"
   when: 
     - vmware_vcenter_environment == "production"
-    - vmware_disk_list is not none
+    - vmware_disk_list is none
 
 - name: creating a VM Windows at vSphere vCenter in No-Production
   vmware_guest:
