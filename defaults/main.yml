@@ -39,6 +39,15 @@ vmware_dns_servers:
 # ------------------------------------------------------------------------------
 vmware_datastore_name:
 vmware_disk_size:
+vmware_disk_list: null
+# ------------------------------------------------------------------------------
+# Example disk list
+# ------------------------------------------------------------------------------
+#
+# vmware_disk_list:
+#   - size_gb: "{{ vmware_disk_size }}"
+#     type: thin
+#     datastore: "{{ vmware_datastore_name }}"
 vmware_vm_folder:
 
 # ------------------------------------------------------------------------------
