@@ -49,7 +49,7 @@
     wait_for_ip_address: yes
   with_items: "{{ vmware_hosts }}"
   register: host_created
-  when: vmware_vcenter_environment == "noproduciton"
+  when: vmware_vcenter_environment == "noproduction"
 
 - name: creating a VM Linux at vSphere vCenter in Production
   vmware_guest:
