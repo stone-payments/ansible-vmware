@@ -1,4 +1,27 @@
 ---
+- name: setup No-Production disk defaults
+  set_fact:
+    vmware_disk_list:
+      - size_gb: "{{ vmware_disk_size }}"
+        type: thin
+        datastore: "{{ vmware_datastore_name }}"
+  when: 
+    - vmware_vcenter_environment == "noproduction"
+    - vmware_disk_list is none
+
+- name: setup Production disk defaults
+  set_fact:
+    vmware_disk_list:
+    - size_gb: "{{ vmware_disk_size1 }}"
+      type: thin
+      datastore: "{{ vmware_datastore_name1 }}"
+    - size_gb: "{{ vmware_disk_size2 }}"
+      type: thin
+      datastore: "{{ vmware_datastore_name2 }}"
+  when: 
+    - vmware_vcenter_environment == "production"
+    - vmware_disk_list is none
+
 - name: creating a VM Linux at vSphere vCenter in No-Production
   vmware_guest:
     hostname: "{{ vmware_vcenter_host }}"
@@ -11,10 +34,7 @@
     guest_id: "{{ vmware_so_guest }}"
     folder: "{{ vmware_vm_folder }}"
     state: poweredon
-    disk:
-    - size_gb: "{{ vmware_disk_size }}"
-      type: thin
-      datastore: "{{ vmware_datastore_name }}"
+    disk: "{{ vmware_disk_list }}"
     hardware:
       memory_mb: "{{ vmware_memory_size }}"
       num_cpus: "{{ vmware_vcpus }}"
@@ -43,13 +63,7 @@
     guest_id: "{{ vmware_so_guest }}"
     folder: "{{ vmware_vm_folder }}"
     state: poweredon
-    disk:
-    - size_gb: "{{ vmware_disk_size1 }}"
-      type: thin
-      datastore: "{{ vmware_datastore_name1 }}"
-    - size_gb: "{{ vmware_disk_size2 }}"
-      type: thin
-      datastore: "{{ vmware_datastore_name2 }}"
+    disk: "{{ vmware_disk_list }}"
     hardware:
       memory_mb: "{{ vmware_memory_size }}"
       num_cpus: "{{ vmware_vcpus }}"
