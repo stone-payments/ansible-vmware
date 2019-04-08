@@ -29,16 +29,17 @@ vmware_vcenter_cluster: ""
 #   - rhel: Template_rhel-7.3_x64-PACKER-base-{VERSION}
 #   - windows:
 # ------------------------------------------------------------------------------
+hotadd_cpu: true
+hotremove_cpu: true
+hotadd_memory: true
+mem_reservation: 0
+num_cpu_cores_per_socket: 0
+
 vmware_hosts:
   - name: VM_NAME
     note: Annotation Example
     vcpus: 0
     memory_size: 0
-    hotadd_cpu: true
-    hotremove_cpu: true
-    hotadd_memory: true
-    mem_reservation: 0
-    num_cpu_cores_per_socket: 0
     so_guest: ""
     disks_list:
       - size_gb: 0
