@@ -41,11 +41,11 @@
     hardware:
       memory_mb: "{{ item.memory_size }}"
       num_cpus: "{{ item.vcpus }}"
-      hotadd_cpu: "{{ item.hotadd_cpu }}"
-      hotremove_cpu: "{{ item.hotremove_cpu }}"
-      hotadd_memory: "{{ item.hotadd_memory }}"
-      mem_reservation: "{{ item.mem_reservation }}"
-      num_cpu_cores_per_socket: "{{ item.num_cpu_cores_per_socket }}"
+      hotadd_cpu: "{{ item.hotadd_cpu | default(hotadd_cpu) }}"
+      hotremove_cpu: "{{ item.hotremove_cpu | default(hotremove_cpu) }}"
+      hotadd_memory: "{{ item.hotadd_memory | default(hotadd_memory) }}"
+      mem_reservation: "{{ item.mem_reservation | default(mem_reservation) }}"
+      num_cpu_cores_per_socket: "{{ item.num_cpu_cores_per_socket | default(num_cpu_cores_per_socket) }}"
     networks: "{{ item.networks }}"
     template: "{{ item.template_base }}"
     validate_certs: false
